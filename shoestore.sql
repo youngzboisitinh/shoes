@@ -204,6 +204,12 @@ CREATE TABLE IF NOT EXISTS `deposit_requests` (
 -- DỮ LIỆU MẪU
 -- ============================================
 
+-- Force UTF-8 when importing seed data so Vietnamese text is stored correctly
+SET NAMES utf8mb4;
+SET character_set_client = utf8mb4;
+SET character_set_connection = utf8mb4;
+SET character_set_results = utf8mb4;
+
 -- Thêm admin account
 INSERT INTO `users` (`full_name`, `email`, `password`, `role`, `phone`, `address`) VALUES
 ('Admin', 'admin@shoestore.com', 'admin123', 'admin', '0123456789', 'Admin Address');

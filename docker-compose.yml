@@ -11,6 +11,7 @@ services:
       - DB_USER=root
       - DB_PASSWORD=root_password
       - DB_NAME=shoestore
+      - DB_PORT=3306
     volumes:
       - ./uploads:/var/www/html/uploads
     healthcheck:
@@ -30,8 +31,9 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
-      - ./shoestore.sql:/docker-entrypoint-initdb.d/01-shoestore.sql
-      - ./fix-charset.sql:/docker-entrypoint-initdb.d/02-fix-charset.sql
+      - ./init-db.sh:/docker-entrypoint-initdb.d/01-init-db.sh
+      - ./shoestore.sql:/seed/01-shoestore.sql:ro
+      - ./fix-charset.sql:/seed/02-fix-charset.sql:ro
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
