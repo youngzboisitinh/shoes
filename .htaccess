@@ -2,6 +2,10 @@
 
 Options -Indexes
 
+# Set UTF-8 charset for all content
+AddDefaultCharset UTF-8
+AddCharset UTF-8 .html .htm .php .txt .css .js
+
 # Chặn các file nhạy cảm theo tên
 
 <FilesMatch "^(configs\.php|includes\.php|layout\.php)$">

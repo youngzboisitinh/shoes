@@ -10,8 +10,9 @@ RUN apt-get update \
     && docker-php-ext-enable pdo_mysql \
     && rm -rf /var/lib/apt/lists/*
 
-# Enable Apache rewrite module
-RUN a2enmod rewrite
+# Enable Apache rewrite module and set UTF-8 charset
+RUN a2enmod rewrite \
+    && echo 'AddDefaultCharset UTF-8' >> /etc/apache2/apache2.conf
 
 # Copy application files
 COPY . /var/www/html/
