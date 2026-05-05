@@ -15,6 +15,25 @@ if (strpos($script_path, '/pages/') !== false || strpos($script_path, '/admin/')
     $base_url = '';
 }
 
+// Function to fix URLs for Docker/Render compatibility
+function fix_image_url($url) {
+    global $base_url;
+    if (empty($url)) return $url;
+    
+    // If URL contains /shoes/ path, rewrite it
+    if (strpos($url, '/shoes/') !== false) {
+        $url = str_replace('/shoes/', '/', $url);
+    }
+    
+    // If URL is absolute HTTP, extract just the path
+    if (strpos($url, 'http://') === 0 || strpos($url, 'https://') === 0) {
+        $parsed = parse_url($url);
+        $url = $parsed['path'] ?? $url;
+    }
+    
+    return $url;
+}
+
 // Hiển thị tên user
 $display_name = isset($_SESSION['full_name']) && $_SESSION['full_name'] !== ''
     ? $_SESSION['full_name'] . ' (' . number_format($_SESSION['balance'], 0, ',', '.') . 'đ)'

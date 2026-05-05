@@ -71,7 +71,7 @@ $csrf_token = $_SESSION['csrf_token'];
                 $slides->data_seek(0); // reset pointer nếu đã foreach ở trên
                 while ($s = $slides->fetch_assoc()): ?>
                     <div class="carousel-item <?= $i == 0 ? 'active' : '' ?>" data-bs-interval="4000">
-                        <img src="<?= $s['image'] ?>" class="d-block w-100" style="max-height:70vh; object-fit:cover;">
+                        <img src="<?= fix_image_url($s['image']) ?>" class="d-block w-100" style="max-height:70vh; object-fit:cover;">
                         <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
                             <h1><?= htmlspecialchars($s['title']) ?></h1>
                             <p><?= htmlspecialchars($s['text']) ?></p>

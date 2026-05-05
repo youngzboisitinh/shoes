@@ -4,7 +4,7 @@
      <div class="grid-item col-sm-6 col-md-4 col-lg-3">
          <div class="card h-100 shadow-sm">
              <a href="./product_detail.php?id=<?= $row['id'] ?>">
-                 <img src="<?= htmlspecialchars($row['image']) ?>" class="card-img-top"
+                 <img src="<?= htmlspecialchars(fix_image_url($row['image'])) ?>" class="card-img-top"
                      alt="<?= htmlspecialchars($row['name']) ?>" style="height:200px; object-fit:cover;"
                      onerror="this.src='../uploads/default-shoe.jpg';">
              </a>

@@ -73,7 +73,7 @@ $csrf_token = $_SESSION['csrf_token'];
                     <div class="carousel-inner">
                         <?php foreach ($images_arr as $k => $img): ?>
                             <div class="carousel-item <?= $k === 0 ? 'active' : '' ?>">
-                                <img src="<?= htmlspecialchars($img) ?>" class="d-block w-100" alt="Ảnh sản phẩm"
+                                <img src="<?= htmlspecialchars(fix_image_url($img)) ?>" class="d-block w-100" alt="Ảnh sản phẩm"
                                     style="max-height:50vh; object-fit:cover;"
                                     onerror="this.src='../uploads/default-shoe.jpg';">
                             </div>
@@ -149,7 +149,7 @@ $csrf_token = $_SESSION['csrf_token'];
                 <?php while ($row = $related_result->fetch_assoc()): ?>
                     <div class="col-md-3 mb-4">
                         <div class="card h-100 shadow-sm">
-                            <img src="<?= htmlspecialchars($row['image']) ?>" class="card-img-top"
+                            <img src="<?= htmlspecialchars(fix_image_url($row['image'])) ?>" class="card-img-top"
                                 alt="<?= htmlspecialchars($row['name']) ?>" style="max-height:200px; object-fit:cover;"
                                 onerror="this.src='../uploads/default-shoe.jpg';">
                             <div class="card-body">
