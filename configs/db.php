@@ -13,5 +13,8 @@ if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
 }
 
-// Set MySQL connection charset to utf8mb4
+// Set MySQL connection charset to utf8mb4 (comprehensive)
 $conn->set_charset("utf8mb4");
+$conn->query("SET NAMES utf8mb4");
+$conn->query("SET CHARACTER SET utf8mb4");
+$conn->query("SET SESSION collation_connection = 'utf8mb4_unicode_ci'");

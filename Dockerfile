@@ -12,7 +12,8 @@ RUN apt-get update \
 
 # Enable Apache rewrite module and set UTF-8 charset
 RUN a2enmod rewrite \
-    && echo 'AddDefaultCharset UTF-8' >> /etc/apache2/apache2.conf
+    && echo 'AddDefaultCharset UTF-8' >> /etc/apache2/apache2.conf \
+    && echo 'default_charset = "UTF-8"' >> /usr/local/etc/php/php.ini-production
 
 # Copy application files
 COPY . /var/www/html/
