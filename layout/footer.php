@@ -12,7 +12,8 @@ if (!isset($base_url)) {
     }
 }
 ?>
-<!--Start of Tawk.to Script-->
+<!--Start of Tawk.to Script - DISABLED FOR DOCKER COMPATIBILITY -->
+<!--
 <script type="text/javascript">
     var Tawk_API = Tawk_API || {},
         Tawk_LoadStart = new Date();
@@ -26,6 +27,7 @@ if (!isset($base_url)) {
         s0.parentNode.insertBefore(s1, s0);
     })();
 </script>
+-->
 <!--End of Tawk.to Script-->
 
 <footer class="bg-dark text-light pt-5 pb-3 mt-5">
