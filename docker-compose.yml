@@ -4,7 +4,8 @@ services:
     ports:
       - "8080:80"
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
     environment:
       - DB_HOST=mysql
       - DB_USER=root
@@ -24,13 +25,12 @@ services:
       - MYSQL_ROOT_PASSWORD=root_password
       - MYSQL_DATABASE=shoestore
       - MYSQL_INITDB_SKIP_TZINFO=1
-    command: --default-character-set=utf8mb4 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-storage-engine=InnoDB
     ports:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
       - ./shoestore.sql:/docker-entrypoint-initdb.d/01-shoestore.sql
-      - ./init-charset.sh:/docker-entrypoint-initdb.d/02-init-charset.sh
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
