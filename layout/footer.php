@@ -1,6 +1,16 @@
 <!-- Footer -->
 <?php
-$base_url = "/shoe_store";
+// Determine base URL dynamically (same logic as header.php)
+if (!isset($base_url)) {
+    $script_path = $_SERVER['PHP_SELF'];
+    if (strpos($script_path, '/pages/') !== false || strpos($script_path, '/admin/') !== false || strpos($script_path, '/account/') !== false) {
+        $base_url = '';
+    } else if (strpos($script_path, '/shoes/') !== false) {
+        $base_url = '/shoes';
+    } else {
+        $base_url = '';
+    }
+}
 ?>
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
@@ -26,7 +36,7 @@ $base_url = "/shoe_store";
             <div class="col-md-4 mb-4">
                 <h3 class="fw-bold">Shoe Store</h3>
                 <p>Do better. Be better - Tốt hơn mỗi ngày.</p>
-                <img src="<?= $base_url ?>/uploads/bo-cong-thuong.png" alt="Đã thông báo Bộ Công Thương" width="150">
+                <img src="<?= fix_image_url($base_url . '/uploads/bo-cong-thuong.png') ?>" alt="Đã thông báo Bộ Công Thương" width="150">
             </div>
 
             <!-- Hỗ trợ khách hàng -->
