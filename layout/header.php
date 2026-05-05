@@ -1,5 +1,8 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) session_start();
+if (!headers_sent()) {
+    header('Content-Type: text/html; charset=utf-8');
+}
 include(__DIR__ . "/../configs/db.php");
 
 // Determine base URL dynamically based on current path
