@@ -1,0 +1,15 @@
+# Tắt directory listing
+
+Options -Indexes
+
+# Chặn các file nhạy cảm theo tên
+
+<FilesMatch "^(configs\.php|includes\.php|layout\.php)$">
+Require all denied
+</FilesMatch>
+
+# Chặn các file theo đuôi (.sql, .env, .md)
+
+<FilesMatch "\.(sql|env|md)$">
+Require all denied
+</FilesMatch>
