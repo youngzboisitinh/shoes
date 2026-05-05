@@ -31,6 +31,7 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
       - ./shoestore.sql:/docker-entrypoint-initdb.d/01-shoestore.sql
+      - ./fix-charset.sql:/docker-entrypoint-initdb.d/02-fix-charset.sql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
