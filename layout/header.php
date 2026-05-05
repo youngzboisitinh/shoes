@@ -2,7 +2,18 @@
 if (session_status() === PHP_SESSION_NONE) session_start();
 include(__DIR__ . "/../configs/db.php");
 
-$base_url = '/shoes';
+// Determine base URL dynamically based on current path
+$script_path = $_SERVER['PHP_SELF'];
+if (strpos($script_path, '/pages/') !== false || strpos($script_path, '/admin/') !== false || strpos($script_path, '/account/') !== false) {
+    // Running from pages/, admin/, or account/ subdirectory
+    $base_url = '';
+} else if (strpos($script_path, '/shoes/') !== false) {
+    // Traditional path /shoes/
+    $base_url = '/shoes';
+} else {
+    // Default to root
+    $base_url = '';
+}
 
 // Hiển thị tên user
 $display_name = isset($_SESSION['full_name']) && $_SESSION['full_name'] !== ''
